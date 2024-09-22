@@ -1,0 +1,9 @@
+{
+	"C_Cpp.default.compilerPath": "/usr/bin/clang++",
+	"C_Cpp.errorSquiggles": "enabled",
+	"files.associations": {
+		"*.make": "makefile",
+		"*.rmd": "markdown",
+		"vector": "cpp"
+	}
+}

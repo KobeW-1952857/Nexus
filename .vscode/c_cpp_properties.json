@@ -1,0 +1,16 @@
+{
+	"configurations": [
+		{
+			"name": "Mac",
+			"includePath": ["${default}", "${workspaceFolder}/**"],
+			"defines": [],
+			"macFrameworkPath": [
+				"/Library/Developer/CommandLineTools/SDKs/MacOSX14.sdk/System/Library/Frameworks"
+			],
+			"intelliSenseMode": "macos-clang-x64",
+			"cppStandard": "c++20",
+			"compilerPath": "/usr/local/opt/llvm/bin/clang++"
+		}
+	],
+	"version": 4
+}
