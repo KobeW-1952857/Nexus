@@ -1,7 +1,7 @@
 #include "Nexus/Log.h"
 
 namespace Nexus {
-void Logger::SetLevel(LogLevel level) {
+void Logger::setLevel(LogLevel level) {
 	switch (level) {
 		case LogLevel::Trace:
 			spdlog::set_level(spdlog::level::trace);

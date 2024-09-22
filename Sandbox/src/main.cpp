@@ -3,24 +3,24 @@
 #include "Nexus.h"
 
 void testLogger() {
-	Nexus::Logger::SetLevel(Nexus::LogLevel::Trace);
-	Nexus::Logger::Log("Hello, World!", Nexus::LogLevel::Trace);
-	Nexus::Logger::Log("Hello, World!", Nexus::LogLevel::Debug);
-	Nexus::Logger::Log("Hello, World!", Nexus::LogLevel::Info);
-	Nexus::Logger::Log("Hello, World!", Nexus::LogLevel::Warn);
-	Nexus::Logger::Log("Hello, World!", Nexus::LogLevel::Error);
-	Nexus::Logger::Log("Hello, World!", Nexus::LogLevel::Critical);
+	Nexus::Logger::setLevel(Nexus::LogLevel::Trace);
+	Nexus::Logger::trace("Hello, World!");
+	Nexus::Logger::debug("Hello, World!");
+	Nexus::Logger::info("Hello, World!");
+	Nexus::Logger::warn("Hello, World!");
+	Nexus::Logger::error("Hello, World!");
+	Nexus::Logger::critical("Hello, World!");
 }
 
 bool testEventCallback(int x) {
-	Nexus::Logger::Log("function: Value: {0}", Nexus::LogLevel::Info, x);
+	Nexus::Logger::info("function: Value: {0}", x);
 	return false;
 }
 
 void testEvent() {
 	Nexus::Event<int> event;
 	event.on([](int x) -> bool {
-		Nexus::Logger::Log("lambda: Value: {0}", Nexus::LogLevel::Info, x);
+		Nexus::Logger::info("lambda: Value: {0}", x);
 		return false;
 	});
 	event.on(testEventCallback);
