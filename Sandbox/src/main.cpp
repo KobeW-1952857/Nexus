@@ -31,7 +31,7 @@ void testEvent() {
 #include "Nexus/Window/GLFWWindow.h"
 
 void test() {
-	auto window = static_cast<Nexus::GLFWWindow*>(Nexus::Window::create());
+	auto window = Nexus::Window::create();
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 	window

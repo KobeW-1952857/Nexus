@@ -61,47 +61,47 @@ void GLFWWindow::setVSync(bool enabled) {
 
 bool GLFWWindow::isVSync() const { return m_data.vSync; }
 
-GLFWWindow* GLFWWindow::onError(const Event<int, const char*>::EventCallback& callback) {
+Window* GLFWWindow::onError(const Event<int, const char*>::EventCallback& callback) {
 	m_error.on(callback);
 	return this;
 }
 
-GLFWWindow* GLFWWindow::onResize(const Event<int, int>::EventCallback& callback) {
+Window* GLFWWindow::onResize(const Event<int, int>::EventCallback& callback) {
 	m_resize.on(callback);
 	return this;
 }
 
-GLFWWindow* GLFWWindow::onClose(const Event<>::EventCallback& callback) {
+Window* GLFWWindow::onClose(const Event<>::EventCallback& callback) {
 	m_close.on(callback);
 	return this;
 }
 
-GLFWWindow* GLFWWindow::onFocus(const Event<int>::EventCallback& callback) {
+Window* GLFWWindow::onFocus(const Event<int>::EventCallback& callback) {
 	m_focus.on(callback);
 	return this;
 }
 
-GLFWWindow* GLFWWindow::onMoved(const Event<int, int>::EventCallback& callback) {
+Window* GLFWWindow::onMoved(const Event<int, int>::EventCallback& callback) {
 	m_moved.on(callback);
 	return this;
 }
 
-GLFWWindow* GLFWWindow::onScroll(const Event<double, double>::EventCallback& callback) {
+Window* GLFWWindow::onScroll(const Event<double, double>::EventCallback& callback) {
 	m_scroll.on(callback);
 	return this;
 }
 
-GLFWWindow* GLFWWindow::onMouseButton(const Event<int, int, int>::EventCallback& callback) {
+Window* GLFWWindow::onMouseButton(const Event<int, int, int>::EventCallback& callback) {
 	m_mouseButton.on(callback);
 	return this;
 }
 
-GLFWWindow* GLFWWindow::onMouseMove(const Event<double, double>::EventCallback& callback) {
+Window* GLFWWindow::onMouseMove(const Event<double, double>::EventCallback& callback) {
 	m_mouseMove.on(callback);
 	return this;
 }
 
-GLFWWindow* GLFWWindow::onKey(const Event<int, int, int, int>::EventCallback& callback) {
+Window* GLFWWindow::onKey(const Event<int, int, int, int>::EventCallback& callback) {
 	m_key.on(callback);
 	return this;
 }

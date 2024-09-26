@@ -12,20 +12,20 @@ class GLFWWindow : public Window {
 	GLFWWindow(const WindowProps& props);
 	virtual ~GLFWWindow();
 
-	void onUpdate() override;
-	void setVSync(bool enabled) override;
-	bool isVSync() const override;
+	virtual void onUpdate() override;
+	virtual void setVSync(bool enabled) override;
+	virtual bool isVSync() const override;
 
 	// events
-	GLFWWindow* onError(const Event<int, const char*>::EventCallback& callback);
-	GLFWWindow* onResize(const Event<int, int>::EventCallback& callback);
-	GLFWWindow* onClose(const Event<>::EventCallback& callback);
-	GLFWWindow* onFocus(const Event<int>::EventCallback& callback);
-	GLFWWindow* onMoved(const Event<int, int>::EventCallback& callback);
-	GLFWWindow* onScroll(const Event<double, double>::EventCallback& callback);
-	GLFWWindow* onMouseButton(const Event<int, int, int>::EventCallback& callback);
-	GLFWWindow* onMouseMove(const Event<double, double>::EventCallback& callback);
-	GLFWWindow* onKey(const Event<int, int, int, int>::EventCallback& callback);
+	virtual Window* onError(const Event<int, const char*>::EventCallback& callback) override;
+	virtual Window* onResize(const Event<int, int>::EventCallback& callback) override;
+	virtual Window* onClose(const Event<>::EventCallback& callback) override;
+	virtual Window* onFocus(const Event<int>::EventCallback& callback) override;
+	virtual Window* onMoved(const Event<int, int>::EventCallback& callback) override;
+	virtual Window* onScroll(const Event<double, double>::EventCallback& callback) override;
+	virtual Window* onMouseButton(const Event<int, int, int>::EventCallback& callback) override;
+	virtual Window* onMouseMove(const Event<double, double>::EventCallback& callback) override;
+	virtual Window* onKey(const Event<int, int, int, int>::EventCallback& callback) override;
 
    private:
 	void setEventCallbacks();
@@ -38,20 +38,5 @@ class GLFWWindow : public Window {
 	};
 	WindowData m_data;
 	GLFWwindow* m_window;
-
-	// Events
-	Event<int, const char*> m_error;
-	// * Window events
-	Event<int, int> m_resize;
-	Event<> m_close;
-	Event<int> m_focus;
-	Event<int, int> m_moved;
-	// * Input events
-	// ** Mouse
-	Event<double, double> m_scroll;
-	Event<int, int, int> m_mouseButton;
-	Event<double, double> m_mouseMove;
-	// ** Keyboard
-	Event<int, int, int, int> m_key;
 };
 }  // namespace Nexus
