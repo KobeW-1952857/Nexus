@@ -1,5 +1,7 @@
 #include "Nexus/Window/GLFWWindow.h"
 
+#include <glad/gl.h>
+
 #include "Nexus/Log.h"
 
 namespace Nexus {
@@ -29,6 +31,8 @@ GLFWWindow::GLFWWindow(const WindowProps& props) {
 	}
 
 	glfwMakeContextCurrent(m_window);
+
+	gladLoadGL(glfwGetProcAddress);
 
 	glfwSetWindowUserPointer(m_window, &m_data);
 
