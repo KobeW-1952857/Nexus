@@ -1,6 +1,7 @@
 #include "Nexus/Window/GLFWWindow.h"
 
-#include <glad/gl.h>
+#include <backends/imgui_impl_glfw.h>
+#include <backends/imgui_impl_opengl3.h>
 
 #include "Nexus/Log.h"
 
@@ -20,8 +21,15 @@ GLFWWindow::GLFWWindow(const WindowProps& props) {
 		exit(EXIT_FAILURE);
 	}
 
+#ifdef __APPLE__
+	const char* glsl_version = "#version 410";
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#else
+#error "Unsupported platform! only macOS is supported!"
+#endif
 
 	m_window = glfwCreateWindow(m_data.width, m_data.height, m_data.title.c_str(), NULL, NULL);
 	if (!m_window) {
@@ -31,12 +39,21 @@ GLFWWindow::GLFWWindow(const WindowProps& props) {
 	}
 
 	glfwMakeContextCurrent(m_window);
-
 	gladLoadGL(glfwGetProcAddress);
-
 	glfwSetWindowUserPointer(m_window, &m_data);
-
 	setEventCallbacks();
+
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+	(void)io;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(m_window, true);
+	ImGui_ImplOpenGL3_Init(glsl_version);
 }
 
 GLFWWindow::~GLFWWindow() {
@@ -44,7 +61,15 @@ GLFWWindow::~GLFWWindow() {
 	glfwTerminate();
 }
 
-void GLFWWindow::onUpdate() {
+void GLFWWindow::onUpdate() {}
+
+void GLFWWindow::frameStart() {
+	ImGui_ImplOpenGL3_NewFrame();
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
+}
+
+void GLFWWindow::frameEnd() {
 	glfwSwapBuffers(m_window);
 	glfwPollEvents();
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <imgui.h>
 
 #include "Nexus/Event.h"
 
@@ -20,6 +21,8 @@ class Window {
    public:
 	virtual ~Window() = default;
 	virtual void onUpdate() = 0;
+	virtual void frameStart() = 0;
+	virtual void frameEnd() = 0;
 	virtual void setVSync(bool enabled) = 0;
 	virtual bool isVSync() const = 0;
 

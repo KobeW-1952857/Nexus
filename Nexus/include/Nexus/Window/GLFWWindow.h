@@ -2,6 +2,7 @@
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
+#include <glad/gl.h>
 
 #include "Nexus/Event.h"
 #include "Nexus/Window.h"
@@ -13,6 +14,8 @@ class GLFWWindow : public Window {
 	virtual ~GLFWWindow();
 
 	virtual void onUpdate() override;
+	virtual void frameStart() override;
+	virtual void frameEnd() override;
 	virtual void setVSync(bool enabled) override;
 	virtual bool isVSync() const override;
 

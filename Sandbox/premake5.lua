@@ -12,6 +12,7 @@ project "Sandbox"
 		"%{wks.location}/Nexus/vendor/spdlog/include",
 		"%{wks.location}/Nexus/vendor/glfw/include",
 		"%{wks.location}/Nexus/vendor/glad/include",
+		"%{wks.location}/Nexus/vendor/ImGui",
 	}
 	
 	files { 
@@ -22,7 +23,8 @@ project "Sandbox"
 	links {
 		"Nexus",
 		"glfw",
-		"glad"
+		"glad",
+		"ImGui"
 	}
 
 	filter "configurations:Debug"
