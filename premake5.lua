@@ -9,6 +9,7 @@ workspace "Nexus"
 	filter""
 
 	include "Nexus/vendor/premake5_glfw.lua"
+	include "Nexus/vendor/premake5_ImGui.lua"
 	include "Nexus/vendor/glad"
 	include "Nexus"
 	include "Sandbox"

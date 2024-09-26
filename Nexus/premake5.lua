@@ -11,6 +11,7 @@ project "Nexus"
 		"vendor/spdlog/include",
 		"vendor/GLFW/include",
 		"vendor/glad/include",
+		"vendor/ImGui",
 		"include"
 	}
 
@@ -22,7 +23,8 @@ project "Nexus"
 
 	links {
 		"glfw",
-		"glad"
+		"glad",
+		"ImGui"
 	}
 	
 	filter "configurations:Debug"
