@@ -36,15 +36,7 @@ GLFWWindow::GLFWWindow(const WindowProps& props) {
 
 	glfwSetWindowUserPointer(m_window, &m_data);
 
-	glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window) {
-		// m_shouldClose = true;
-		auto windowData = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
-		windowData->window->m_shouldClose = true;
-	});
-
-	glfwSetErrorCallback([](int error, const char* description) {
-		Logger::error("GLFW Error ({0}): {1}", error, description);
-	});
+	setEventCallbacks();
 }
 
 GLFWWindow::~GLFWWindow() {
@@ -68,4 +60,102 @@ void GLFWWindow::setVSync(bool enabled) {
 }
 
 bool GLFWWindow::isVSync() const { return m_data.vSync; }
+
+GLFWWindow* GLFWWindow::onError(const Event<int, const char*>::EventCallback& callback) {
+	m_error.on(callback);
+	return this;
+}
+
+GLFWWindow* GLFWWindow::onResize(const Event<int, int>::EventCallback& callback) {
+	m_resize.on(callback);
+	return this;
+}
+
+GLFWWindow* GLFWWindow::onClose(const Event<>::EventCallback& callback) {
+	m_close.on(callback);
+	return this;
+}
+
+GLFWWindow* GLFWWindow::onFocus(const Event<int>::EventCallback& callback) {
+	m_focus.on(callback);
+	return this;
+}
+
+GLFWWindow* GLFWWindow::onMoved(const Event<int, int>::EventCallback& callback) {
+	m_moved.on(callback);
+	return this;
+}
+
+GLFWWindow* GLFWWindow::onScroll(const Event<double, double>::EventCallback& callback) {
+	m_scroll.on(callback);
+	return this;
+}
+
+GLFWWindow* GLFWWindow::onMouseButton(const Event<int, int, int>::EventCallback& callback) {
+	m_mouseButton.on(callback);
+	return this;
+}
+
+GLFWWindow* GLFWWindow::onMouseMove(const Event<double, double>::EventCallback& callback) {
+	m_mouseMove.on(callback);
+	return this;
+}
+
+GLFWWindow* GLFWWindow::onKey(const Event<int, int, int, int>::EventCallback& callback) {
+	m_key.on(callback);
+	return this;
+}
+
+void GLFWWindow::setEventCallbacks() {
+	glfwSetErrorCallback([](int error, const char* description) {
+		auto windowData =
+			static_cast<WindowData*>(glfwGetWindowUserPointer(glfwGetCurrentContext()));
+		Logger::error("GLFW Error ({0}): {1}", error, description);
+		windowData->window->m_error.invoke(error, description);
+	});
+
+	glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window) {
+		auto windowData = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+		windowData->window->m_shouldClose = true;
+		windowData->window->m_close.invoke();
+	});
+
+	glfwSetWindowSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
+		auto windowData = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+		windowData->width = width;
+		windowData->height = height;
+		windowData->window->m_resize.invoke(width, height);
+	});
+
+	glfwSetWindowFocusCallback(m_window, [](GLFWwindow* window, int focused) {
+		auto windowData = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+		windowData->window->m_focus.invoke(focused);
+	});
+
+	glfwSetWindowPosCallback(m_window, [](GLFWwindow* window, int x, int y) {
+		auto windowData = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+		windowData->window->m_moved.invoke(x, y);
+	});
+
+	glfwSetScrollCallback(m_window, [](GLFWwindow* window, double xOffset, double yOffset) {
+		auto windowData = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+		windowData->window->m_scroll.invoke(xOffset, yOffset);
+	});
+
+	glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int button, int action, int mods) {
+		auto windowData = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+		windowData->window->m_mouseButton.invoke(button, action, mods);
+	});
+
+	glfwSetCursorPosCallback(m_window, [](GLFWwindow* window, double xPos, double yPos) {
+		auto windowData = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+		windowData->window->m_mouseMove.invoke(xPos, yPos);
+	});
+
+	glfwSetKeyCallback(
+		m_window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
+			auto windowData = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+			windowData->window->m_key.invoke(key, scancode, action, mods);
+		});
+}
 }  // namespace Nexus

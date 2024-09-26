@@ -31,15 +31,44 @@ void testEvent() {
 #include "Nexus/Window/GLFWWindow.h"
 
 void test() {
-	auto window = Nexus::Window::create();
-	gladLoadGL(glfwGetProcAddress);
-
+	auto window = static_cast<Nexus::GLFWWindow*>(Nexus::Window::create());
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+	window
+		->onResize([](int width, int height) -> bool {
+			glViewport(0, 0, width, height);
+			Nexus::Logger::info("Window resized to {0}x{1}", width, height);
+			return false;
+		})
+		->onResize([](int width, int height) -> bool {
+			Nexus::Logger::info("Second resize callback: {0}x{1}", width, height);
+			return true;
+		})
+		->onResize([](int width, int height) -> bool {
+			Nexus::Logger::info("Third resize callback: {0}x{1}", width, height);
+			return false;
+		})
+		->onClose([]() -> bool {
+			Nexus::Logger::info("Window closed");
+			return false;
+		})
+		->onError([](int error, const char* description) -> bool {
+			Nexus::Logger::error("GLFW Error ({0}): {1}", error, description);
+			return true;
+		})
+		->onKey([](int key, int scancode, int action, int mods) -> bool {
+			Nexus::Logger::info("Key: {0}, Scancode: {1}, Action: {2}, Mods: {3}", key, scancode,
+								action, mods);
+			return false;
+		});
+
 	while (!window->shouldClose()) {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		window->onUpdate();
 	}
+
+	delete window;
 }
 
 int main() {

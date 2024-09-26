@@ -7,9 +7,8 @@
 namespace Nexus {
 template <typename... Args>
 class Event {
-	using EventCallback = std::function<bool(Args...)>;
-
    public:
+	using EventCallback = std::function<bool(Args...)>;
 	Event() = default;
 	Event(const std::string& name) : m_name(name) {}
 
