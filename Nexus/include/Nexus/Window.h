@@ -1,7 +1,8 @@
 #pragma once
 
-#include <string>
 #include <imgui.h>
+
+#include <string>
 
 #include "Nexus/Event.h"
 
@@ -26,8 +27,6 @@ class Window {
 	virtual void setVSync(bool enabled) = 0;
 	virtual bool isVSync() const = 0;
 
-	virtual bool shouldClose() const { return m_shouldClose; }
-
 	// events
 	virtual Window* onError(const Event<int, const char*>::EventCallback& callback) = 0;
 	virtual Window* onResize(const Event<int, int>::EventCallback& callback) = 0;
@@ -41,9 +40,9 @@ class Window {
 
 	static Window* create(const WindowProps& props = WindowProps());
 
-   protected:
-	bool m_shouldClose = false;
+	bool shouldClose = false;
 
+   protected:
 	// Events
 	Event<int, const char*> m_error;
 	// * Window events

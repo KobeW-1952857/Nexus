@@ -1,11 +1,11 @@
-project "glad"
+project "Glad"
 	kind "StaticLib"
 	language "C"
 	staticruntime "on"
 	warnings "off"
 
-	targetdir ("%{wks.location}/bin/" .. outputdir)
-	objdir ("%{wks.location}/obj/" .. outputdir)
+	targetdir ("%{wks.location}/Nexus/bin/" .. outputdir)
+	objdir ("%{wks.location}/Nexus/obj/" .. outputdir)
 
 	files
 	{

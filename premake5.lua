@@ -10,6 +10,6 @@ workspace "Nexus"
 
 	include "Nexus/vendor/premake5_glfw.lua"
 	include "Nexus/vendor/premake5_ImGui.lua"
-	include "Nexus/vendor/glad"
+	include "Nexus/vendor/Glad"
 	include "Nexus"
-	include "Sandbox"
+	include "Nexus/examples"

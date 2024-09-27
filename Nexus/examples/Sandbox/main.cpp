@@ -35,42 +35,26 @@ void test() {
 	auto window = Nexus::Window::create();
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
-	window
-		->onResize([](int width, int height) -> bool {
-			glViewport(0, 0, width, height);
-			Nexus::Logger::info("Window resized to {0}x{1}", width, height);
-			return false;
-		})
-		->onResize([](int width, int height) -> bool {
-			Nexus::Logger::info("Second resize callback: {0}x{1}", width, height);
+	window->setVSync(true);
+	window->onKey([window](int key, int scancode, int action, int mods) {
+		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+			Nexus::Logger::info("Escape key pressed");
+			window->shouldClose = true;
 			return true;
-		})
-		->onResize([](int width, int height) -> bool {
-			Nexus::Logger::info("Third resize callback: {0}x{1}", width, height);
-			return false;
-		})
-		->onClose([]() -> bool {
-			Nexus::Logger::info("Window closed");
-			return false;
-		})
-		->onError([](int error, const char* description) -> bool {
-			Nexus::Logger::error("GLFW Error ({0}): {1}", error, description);
-			return true;
-		})
-		->onKey([](int key, int scancode, int action, int mods) -> bool {
-			Nexus::Logger::info("Key: {0}, Scancode: {1}, Action: {2}, Mods: {3}", key, scancode,
-								action, mods);
-			return false;
-		})
-		->setVSync(true);
+		}
+		return false;
+	});
+
 	// Our state
 	bool show_demo_window = true;
 	bool show_another_window = false;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-	while (!window->shouldClose()) {
+	while (!window->shouldClose) {
 		window->frameStart();
 		glClear(GL_COLOR_BUFFER_BIT);
+
+		//* Stolen from ImGui example
 		// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You
 		// can browse its code to learn more about Dear ImGui!).
 		if (show_demo_window) ImGui::ShowDemoWindow(&show_demo_window);

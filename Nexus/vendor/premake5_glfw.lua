@@ -5,8 +5,8 @@ project "glfw"
 	warnings "off"
 	location "glfw"
 
-	targetdir ("%{wks.location}/bin/" .. outputdir)
-	objdir ("%{wks.location}/obj/" .. outputdir)
+	targetdir ("%{wks.location}/Nexus/bin/" .. outputdir)
+	objdir ("%{wks.location}/Nexus/obj/" .. outputdir)
 
 	files
 	{

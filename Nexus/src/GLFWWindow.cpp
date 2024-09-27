@@ -141,7 +141,7 @@ void GLFWWindow::setEventCallbacks() {
 
 	glfwSetWindowCloseCallback(m_window, [](GLFWwindow* window) {
 		auto windowData = static_cast<WindowData*>(glfwGetWindowUserPointer(window));
-		windowData->window->m_shouldClose = true;
+		windowData->window->shouldClose = true;
 		windowData->window->m_close.invoke();
 	});
 

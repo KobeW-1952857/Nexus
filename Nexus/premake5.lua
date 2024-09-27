@@ -4,26 +4,25 @@ project "Nexus"
 	language "C++"
 	cppdialect "C++20"
 	
-	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("%{wks.location}/obj/" .. outputdir .. "/%{prj.name}")
+	targetdir ("%{wks.location}/Nexus/bin/" .. outputdir)
+	objdir ("%{wks.location}/Nexus/obj/" .. outputdir)
 	
 	includedirs {
 		"vendor/spdlog/include",
 		"vendor/GLFW/include",
-		"vendor/glad/include",
+		"vendor/Glad/include",
 		"vendor/ImGui",
 		"include"
 	}
 
 	files { 
 		"include/Nexus/**.h",
-		"src/**.cpp",
-		"src/Log.cpp"
+		"src/**.cpp"
 	}
 
 	links {
 		"glfw",
-		"glad",
+		"Glad",
 		"ImGui"
 	}
 	
