@@ -4,13 +4,17 @@ project "Sandbox"
 	cppdialect "C++20"
 	staticruntime "on"
 	location "Sandbox"
+
+	targetdir ("%{prj.location}/bin/" .. outputdir)
+	objdir ("%{prj.location}/obj/" .. outputdir)
 	
 	includedirs {
-		"%{wks.location}/Nexus/include",
-		"%{wks.location}/Nexus/vendor/spdlog/include",
-		"%{wks.location}/Nexus/vendor/glfw/include",
-		"%{wks.location}/Nexus/vendor/Glad/include",
-		"%{wks.location}/Nexus/vendor/ImGui",
+		"%{wks.location}/include",
+		"%{wks.location}/vendor",
+		"%{wks.location}/vendor/Glad/include",
+		"%{wks.location}/vendor/glfw/include",
+		"%{wks.location}/vendor/ImGui",
+		"%{wks.location}/vendor/spdlog/include",
 	}
 	
 	files { 

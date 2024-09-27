@@ -5,9 +5,6 @@ project "ImGui"
 	warnings "off"
 	cppdialect "C++17"
 
-	targetdir ("%{wks.location}/Nexus/bin/" .. outputdir)
-	objdir ("%{wks.location}/Nexus/obj/" .. outputdir)
-
 	files
 	{
 		"%{prj.location}/*.h",

@@ -5,9 +5,6 @@ project "glfw"
 	warnings "off"
 	location "glfw"
 
-	targetdir ("%{wks.location}/Nexus/bin/" .. outputdir)
-	objdir ("%{wks.location}/Nexus/obj/" .. outputdir)
-
 	files
 	{
 		"%{prj.location}/include/GLFW/glfw3.h",

@@ -4,9 +4,6 @@ project "Glad"
 	staticruntime "on"
 	warnings "off"
 
-	targetdir ("%{wks.location}/Nexus/bin/" .. outputdir)
-	objdir ("%{wks.location}/Nexus/obj/" .. outputdir)
-
 	files
 	{
 		"include/glad/gl.h",
