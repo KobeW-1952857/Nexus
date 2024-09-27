@@ -1,9 +1,0 @@
-[submodule "Nexus/vendor/spdlog"]
-	path = Nexus/vendor/spdlog
-	url = git@github.com:gabime/spdlog.git
-[submodule "Nexus/vendor/glfw"]
-	path = Nexus/vendor/glfw
-	url = git@github.com:glfw/glfw.git
-[submodule "Nexus/vendor/ImGui"]
-	path = Nexus/vendor/ImGui
-	url = git@github.com:ocornut/imgui.git
