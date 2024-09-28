@@ -29,7 +29,7 @@ void testEvent() {
 }
 
 #include "Nexus/Window/GLFWWindow.h"
-#include "backends/imgui_impl_opengl3.h"  // TODO Remove this
+// #include "backends/imgui_impl_opengl3.h"  // TODO Remove this
 
 void test() {
 	auto window = Nexus::Window::create();
@@ -101,23 +101,9 @@ void test() {
 			ImGui::End();
 		}
 
-		// Rendering
-		ImGui::Render();
 		glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w,
 					 clear_color.z * clear_color.w, clear_color.w);
 		glClear(GL_COLOR_BUFFER_BIT);
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-		// Update and Render additional Platform Windows
-		// (Platform functions may change the current OpenGL context, so we save/restore it to make
-		// it easier to paste this code elsewhere.
-		//  For this specific demo app we could also call glfwMakeContextCurrent(window) directly)
-		if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-			GLFWwindow* backup_current_context = glfwGetCurrentContext();
-			ImGui::UpdatePlatformWindows();
-			ImGui::RenderPlatformWindowsDefault();
-			glfwMakeContextCurrent(backup_current_context);
-		}
 
 		window->frameEnd();
 	}
