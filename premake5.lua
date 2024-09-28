@@ -32,11 +32,14 @@ project "Nexus"
 		"vendor/Glad/include",
 		"vendor/GLFW/include",
 		"vendor/spdlog/include",
+		"vendor/glm/glm",
 	}
 
 	files { 
 		"include/Nexus/**.h",
-		"src/**.cpp"
+		"src/**.cpp",
+		"vendor/glm/glm/**.hpp",
+		"vendor/glm/glm/**.inl",
 	}
 
 	links {

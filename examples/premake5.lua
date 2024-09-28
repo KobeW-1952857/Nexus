@@ -15,6 +15,7 @@ project "Sandbox"
 		"%{wks.location}/vendor/glfw/include",
 		"%{wks.location}/vendor/ImGui",
 		"%{wks.location}/vendor/spdlog/include",
+		"%{wks.location}/vendor/glm",
 	}
 	
 	files { 
