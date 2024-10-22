@@ -28,11 +28,11 @@ project "Nexus"
 	includedirs {
 		"include",
 		"vendor",
-		"vendor/ImGui",
 		"vendor/Glad/include",
 		"vendor/GLFW/include",
-		"vendor/spdlog/include",
 		"vendor/glm/glm",
+		"vendor/ImGui",
+		"vendor/spdlog/include",
 	}
 
 	files { 
