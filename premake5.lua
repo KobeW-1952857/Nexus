@@ -26,13 +26,13 @@ project "Nexus"
 	
 	
 	includedirs {
-		"include",
-		"vendor",
-		"vendor/Glad/include",
-		"vendor/GLFW/include",
-		"vendor/glm/glm",
-		"vendor/ImGui",
-		"vendor/spdlog/include",
+		"%{prj.location}/include",
+		"%{prj.location}/vendor",
+		"%{prj.location}/vendor/Glad/include",
+		"%{prj.location}/vendor/GLFW/include",
+		"%{prj.location}/vendor/glm/glm",
+		"%{prj.location}/vendor/ImGui",
+		"%{prj.location}/vendor/spdlog/include",
 	}
 
 	files { 

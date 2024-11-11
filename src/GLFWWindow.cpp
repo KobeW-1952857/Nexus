@@ -3,6 +3,8 @@
 #include <ImGui/backends/imgui_impl_glfw.h>
 #include <ImGui/backends/imgui_impl_opengl3.h>
 
+#include <functional>
+
 #include "Nexus/Log.h"
 
 namespace Nexus {
@@ -146,6 +148,14 @@ Window* GLFWWindow::onMouseMove(const Event<double, double>::EventCallback& call
 Window* GLFWWindow::onKey(const Event<int, int, int, int>::EventCallback& callback) {
 	m_key.on(callback);
 	return this;
+}
+
+void GLFWWindow::whileOpen(std::function<void()> callback) {
+	while (!shouldClose) {
+		frameStart();
+		callback();
+		frameEnd();
+	}
 }
 
 void GLFWWindow::setEventCallbacks() {

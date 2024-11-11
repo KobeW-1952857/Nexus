@@ -38,6 +38,8 @@ class Window {
 	virtual Window* onMouseMove(const Event<double, double>::EventCallback& callback) = 0;
 	virtual Window* onKey(const Event<int, int, int, int>::EventCallback& callback) = 0;
 
+	virtual void whileOpen(std::function<void()> callback) = 0;
+
 	static Window* create(const WindowProps& props = WindowProps());
 
 	bool shouldClose = false;

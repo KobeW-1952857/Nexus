@@ -32,11 +32,11 @@ void testEvent() {
 // #include "backends/imgui_impl_opengl3.h"  // TODO Remove this
 
 void test() {
-	auto window = Nexus::Window::create();
+	auto window = std::unique_ptr<Nexus::Window>(Nexus::Window::create());
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 	window->setVSync(true);
-	window->onKey([window](int key, int scancode, int action, int mods) {
+	window->onKey([&window](int key, int scancode, int action, int mods) {
 		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
 			Nexus::Logger::info("Escape key pressed");
 			window->shouldClose = true;
@@ -50,8 +50,7 @@ void test() {
 	bool show_another_window = false;
 	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
-	while (!window->shouldClose) {
-		window->frameStart();
+	window->whileOpen([&]() {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//* Stolen from ImGui example
@@ -104,11 +103,7 @@ void test() {
 		glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w,
 					 clear_color.z * clear_color.w, clear_color.w);
 		glClear(GL_COLOR_BUFFER_BIT);
-
-		window->frameEnd();
-	}
-
-	delete window;
+	});
 }
 
 int main() {

@@ -30,6 +30,8 @@ class GLFWWindow : public Window {
 	virtual Window* onMouseMove(const Event<double, double>::EventCallback& callback) override;
 	virtual Window* onKey(const Event<int, int, int, int>::EventCallback& callback) override;
 
+	virtual void whileOpen(std::function<void()> callback) override;
+
    private:
 	void setEventCallbacks();
 
