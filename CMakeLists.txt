@@ -34,13 +34,13 @@ if(NEXUS_MASTER_PROJECT)
 	add_subdirectory(example)
 endif()
 
-add_subdirectory(vendor/glad)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/glad)
 target_link_libraries(Nexus PUBLIC glad)
 
-add_subdirectory(vendor/glfw)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw)
 target_link_libraries(Nexus PUBLIC glfw)
 
-add_subdirectory(vendor/glm)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/glm)
 target_link_libraries(Nexus PUBLIC glm)
 
 # add_subdirectory(vendor/ImGui)
@@ -58,5 +58,5 @@ target_sources(Nexus PUBLIC ${IMGUI_HEADERS} ${IMGUI_SOURCES})
 target_include_directories(Nexus PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
 target_include_directories(Nexus PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/vendor/ImGui")
 
-add_subdirectory(vendor/spdlog)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog)
 target_link_libraries(Nexus PUBLIC spdlog::spdlog)
