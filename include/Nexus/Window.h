@@ -52,6 +52,7 @@ class Window {
 	Event<> m_close;
 	Event<int> m_focus;
 	Event<int, int> m_moved;
+	
 	// * Input events
 	// ** Mouse
 	Event<double, double> m_scroll;

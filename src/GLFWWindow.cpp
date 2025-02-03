@@ -23,14 +23,12 @@ GLFWWindow::GLFWWindow(const WindowProps& props) {
 		exit(EXIT_FAILURE);
 	}
 
-#ifdef __APPLE__
 	const char* glsl_version = "#version 410";
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+#ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#else
-#error "Unsupported platform! only macOS is supported!"
 #endif
 
 	m_window = glfwCreateWindow(m_data.width, m_data.height, m_data.title.c_str(), NULL, NULL);

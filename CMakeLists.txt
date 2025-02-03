@@ -43,6 +43,8 @@ target_link_libraries(Nexus PUBLIC glfw)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/glm)
 target_link_libraries(Nexus PUBLIC glm)
 
+add_library(ImGui STATIC)
+
 # add_subdirectory(vendor/ImGui)
 # target_link_libraries(Nexus PUBLIC imgui)
 file (GLOB IMGUI_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/ImGui/*.h")
@@ -54,9 +56,12 @@ list (APPEND IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/vendor/ImGui/backends/im
 list (APPEND IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/vendor/ImGui/backends/imgui_impl_opengl3.cpp")
 list (APPEND IMGUI_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/vendor/ImGui/misc/cpp/imgui_stdlib.cpp")
 
-target_sources(Nexus PUBLIC ${IMGUI_HEADERS} ${IMGUI_SOURCES})
-target_include_directories(Nexus PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
-target_include_directories(Nexus PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/vendor/ImGui")
+target_sources(ImGui PUBLIC ${IMGUI_HEADERS} ${IMGUI_SOURCES})
+target_link_libraries(ImGui PUBLIC glad glfw)
+target_include_directories(ImGui PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
+target_include_directories(ImGui PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/vendor/ImGui")
+
+target_link_libraries(Nexus PUBLIC ImGui)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog)
 target_link_libraries(Nexus PUBLIC spdlog::spdlog)
