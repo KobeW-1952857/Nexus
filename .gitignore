@@ -112,3 +112,4 @@ Temporary Items
 build/
 **/imgui.ini
 Makefile
+.cache/
