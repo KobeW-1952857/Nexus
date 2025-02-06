@@ -19,6 +19,10 @@ struct WindowProps {
 
 class Window {
 public:
+  enum class API { None, GLFW };
+  static API s_api;
+
+public:
   virtual ~Window() = default;
   virtual void onUpdate() = 0;
   virtual void frameStart() = 0;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Nexus/Core/PlatformDetection.h"
+#include "Nexus/Core/PlatformDetection.h" // IWYU pragma: private
 
-#include "Nexus/Event.h"
-#include "Nexus/Log.h"
-#include "Nexus/Window.h"
+#include "Nexus/Event.h"  // IWYU pragma: export
+#include "Nexus/Log.h"    // IWYU pragma: export
+#include "Nexus/Window.h" // IWYU pragma: export

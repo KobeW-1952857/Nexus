@@ -27,7 +27,8 @@ void testEvent() {
 }
 
 void test() {
-  auto window = std::unique_ptr<Nexus::Window>(Nexus::Window::create());
+  Nexus::Window::s_api = Nexus::Window::API::GLFW;
+  auto window = Nexus::Window::create();
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
   window->setVSync(true);
