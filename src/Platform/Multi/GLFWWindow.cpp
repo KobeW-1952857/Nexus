@@ -104,54 +104,45 @@ void GLFWWindow::setVSync(bool enabled) {
 
 bool GLFWWindow::isVSync() const { return m_data.vSync; }
 
-Window *
-GLFWWindow::onError(const Event<int, const char *>::EventCallback &callback) {
+void GLFWWindow::onError(
+    const Event<int, const char *>::EventCallback &callback) {
   m_error.on(callback);
-  return this;
 }
 
-Window *GLFWWindow::onResize(const Event<int, int>::EventCallback &callback) {
+void GLFWWindow::onResize(const Event<int, int>::EventCallback &callback) {
   m_resize.on(callback);
-  return this;
 }
 
-Window *GLFWWindow::onClose(const Event<>::EventCallback &callback) {
+void GLFWWindow::onClose(const Event<>::EventCallback &callback) {
   m_close.on(callback);
-  return this;
 }
 
-Window *GLFWWindow::onFocus(const Event<int>::EventCallback &callback) {
+void GLFWWindow::onFocus(const Event<int>::EventCallback &callback) {
   m_focus.on(callback);
-  return this;
 }
 
-Window *GLFWWindow::onMoved(const Event<int, int>::EventCallback &callback) {
+void GLFWWindow::onMoved(const Event<int, int>::EventCallback &callback) {
   m_moved.on(callback);
-  return this;
 }
 
-Window *
-GLFWWindow::onScroll(const Event<double, double>::EventCallback &callback) {
+void GLFWWindow::onScroll(
+    const Event<double, double>::EventCallback &callback) {
   m_scroll.on(callback);
-  return this;
 }
 
-Window *
-GLFWWindow::onMouseButton(const Event<int, int, int>::EventCallback &callback) {
+void GLFWWindow::onMouseButton(
+    const Event<int, int, int>::EventCallback &callback) {
   m_mouseButton.on(callback);
-  return this;
 }
 
-Window *
-GLFWWindow::onMouseMove(const Event<double, double>::EventCallback &callback) {
+void GLFWWindow::onMouseMove(
+    const Event<double, double>::EventCallback &callback) {
   m_mouseMove.on(callback);
-  return this;
 }
 
-Window *
-GLFWWindow::onKey(const Event<int, int, int, int>::EventCallback &callback) {
+void GLFWWindow::onKey(
+    const Event<int, int, int, int>::EventCallback &callback) {
   m_key.on(callback);
-  return this;
 }
 
 void GLFWWindow::whileOpen(std::function<void()> callback) {

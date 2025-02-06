@@ -27,24 +27,25 @@ public:
   virtual bool isVSync() const = 0;
 
   // events
-  virtual Window *
+  virtual void
   onError(const Event<int, const char *>::EventCallback &callback) = 0;
-  virtual Window *onResize(const Event<int, int>::EventCallback &callback) = 0;
-  virtual Window *onClose(const Event<>::EventCallback &callback) = 0;
-  virtual Window *onFocus(const Event<int>::EventCallback &callback) = 0;
-  virtual Window *onMoved(const Event<int, int>::EventCallback &callback) = 0;
-  virtual Window *
+  virtual void onResize(const Event<int, int>::EventCallback &callback) = 0;
+  virtual void onClose(const Event<>::EventCallback &callback) = 0;
+  virtual void onFocus(const Event<int>::EventCallback &callback) = 0;
+  virtual void onMoved(const Event<int, int>::EventCallback &callback) = 0;
+  virtual void
   onScroll(const Event<double, double>::EventCallback &callback) = 0;
-  virtual Window *
+  virtual void
   onMouseButton(const Event<int, int, int>::EventCallback &callback) = 0;
-  virtual Window *
+  virtual void
   onMouseMove(const Event<double, double>::EventCallback &callback) = 0;
-  virtual Window *
+  virtual void
   onKey(const Event<int, int, int, int>::EventCallback &callback) = 0;
 
   virtual void whileOpen(std::function<void()> callback) = 0;
 
-  static Window *create(const WindowProps &props = WindowProps());
+  static std::unique_ptr<Window>
+  create(const WindowProps &props = WindowProps());
 
   bool shouldClose = false;
 
