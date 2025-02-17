@@ -3,6 +3,7 @@
 #include "Nexus/Event.h"
 
 #include <ImGui/imgui.h>
+#include <memory>
 #include <string>
 
 namespace Nexus {

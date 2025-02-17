@@ -2,7 +2,7 @@
 
 #include "Nexus/Log.h"
 #include "Nexus/Window/GLFWWindow.h"
-#include <memory>
+
 namespace Nexus {
 Window::API Window::s_api = Window::API::GLFW;
 
